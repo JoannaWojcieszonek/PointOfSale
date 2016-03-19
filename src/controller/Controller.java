@@ -1,54 +1,52 @@
 package controller;
 
-import java.io.InvalidObjectException;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
-import java.util.concurrent.BlockingQueue;
 
+import java.util.concurrent.BlockingQueue;
+import inputDevices.Event;
+import inputDevices.EventType;
 import model.*;
 import view.LCDDisplay;
 import view.Printer;
 
-public class Controller{
+public class Controller implements Runnable{
+	Thread thread;
+	
 	LCDDisplay lcd;
 	Printer printer;
 	PointOfSale model;
-    BarcodeScanner barcodeScanner;
+    BlockingQueue<Event> queue;
 
-	public Controller(LCDDisplay lcd, Printer printer, PointOfSale pointOfSale,BarcodeScanner barcodeScanner){
+	public Controller(LCDDisplay lcd, Printer printer, PointOfSale pointOfSale,BlockingQueue<Event> queue){
 		this.lcd = lcd;
 		this.printer = printer;
         this.model = pointOfSale;
-        this.barcodeScanner = barcodeScanner;
+        this.queue = queue;
         pointOfSale.addObserver(lcd);
+        thread = new Thread(this);
+        thread.start();
+	}
+	
+	private void handleEvent() {
+		// TODO Auto-generated method stub
+		try {
+			Event event = queue.take();
+			if(event.getType() == EventType.ProductScannedEvent)
+			{
+				model.loadProductById((Integer)event.getValue());
+			}
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 
-    public void start()
-	{
-        while(true)
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		while(true)
         {
-            try {
-                barcodeScanner.scan();
-                Object scanned = barcodeScanner.getQueue().take();
-                
-				if(scanned.equals("exit"))
-				{
-					printer.printReceipt();
-					model.reset();
-				}
-				else
-				{
-					model.loadProductById((Integer)scanned);
-				}
-
-            } catch (NullPointerException e) {
-                lcd.print("Invalid Bar Code");
-            } catch  (NoSuchElementException e) {
-                lcd.print("Not such product");
-            } catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+            handleEvent();
         }
 	}
 }
