@@ -30,7 +30,7 @@ public class PointOfSale extends Observable
     public void reset()
     {
     	setChanged();
-    	notifyObservers(receipt.getSum());
+    	notifyObservers(receipt);
     	
         receipt = new Receipt();
     }

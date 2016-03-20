@@ -7,12 +7,11 @@ import java.util.concurrent.BlockingQueue;
 public class BarcodeScanner implements InputDevice, Runnable {
 	
 	private BlockingQueue<Event> queue;
-	private Thread thread;
 
 	public BarcodeScanner(BlockingQueue<Event> queue)
 	{
 		this.queue = queue;
-		thread = new Thread(this);
+		Thread thread = new Thread(this);
 		thread.start();
 	}
 	

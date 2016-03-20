@@ -6,12 +6,6 @@ import model.*;
 
 public class LCDDisplay implements Observer{
 
-	private PointOfSale model;
-
-	public LCDDisplay(PointOfSale model) {
-		this.model = model;
-	}
-
 	public void print(String msg) {
 		System.out.println(msg);
 	}
@@ -19,13 +13,13 @@ public class LCDDisplay implements Observer{
 	public void update(Observable o, Object arg)
 	{
 		System.out.println("##### LCD DISPLAY #####");
-		model.getProductList();
 		if( arg instanceof Product) {
 			Product p  = (Product) arg;
 			System.out.println(p);
 			}
-		else if ( arg instanceof Double) {
-			System.out.println("Total: " + arg);
+		else if ( arg instanceof Receipt) {
+			Receipt r = (Receipt) arg;
+			System.out.println("Total: " + r.getSum());
 		}
 			
 		System.out.println("#######################");

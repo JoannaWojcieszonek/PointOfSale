@@ -8,11 +8,10 @@ import javax.swing.JOptionPane;
 public class ExitButton implements InputDevice, Runnable {
 
 	private BlockingQueue<Event> queue;
-	private Thread thread;
 	
 	public ExitButton(BlockingQueue<Event> queue) {
 		this.queue = queue;
-		thread = new Thread(this);
+		Thread thread = new Thread(this);
 		thread.start();
 	}
 	
@@ -39,8 +38,10 @@ public class ExitButton implements InputDevice, Runnable {
 				sendEvent(event);
 			}*/
 			String inputValue = JOptionPane.showInputDialog("Please input a value");
-			Event event = new Event(inputValue, EventType.ExitButtonClickedEvent);
-			sendEvent(event);
+			if(inputValue.equals("exit")) {
+				Event event = new Event(inputValue, EventType.ExitButtonClickedEvent);
+				sendEvent(event);
+			}
 		}
 	}
 

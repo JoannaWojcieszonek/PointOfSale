@@ -16,8 +16,8 @@ public class PointOfSaleStart {
 		
 		PointOfSale model = new PointOfSale();
 		
-		Printer printer = new Printer(model);
-		LCDDisplay lcd = new LCDDisplay(model);
+		Printer printer = new Printer();
+		LCDDisplay lcd = new LCDDisplay();
 		
 		BarcodeScanner barcodeScanner = new BarcodeScanner(queue);
 		ExitButton exitButton = new ExitButton(queue);
