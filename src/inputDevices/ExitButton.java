@@ -3,25 +3,22 @@ package inputDevices;
 import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
 
+import javax.swing.JOptionPane;
 
-public class BarcodeScanner implements InputDevice, Runnable {
-	
+public class ExitButton implements InputDevice, Runnable {
+
 	private BlockingQueue<Event> queue;
 	private Thread thread;
-
-	public BarcodeScanner(BlockingQueue<Event> queue)
-	{
+	
+	public ExitButton(BlockingQueue<Event> queue) {
 		this.queue = queue;
 		thread = new Thread(this);
 		thread.start();
 	}
 	
-	public BlockingQueue<Event> getQueue() {
-		return queue;
-	}
-	
 	@Override
 	public void sendEvent(Event event) {
+		// TODO Auto-generated method stub
 		try {
 			queue.put(event);
 		} catch (InterruptedException e) {
@@ -33,16 +30,18 @@ public class BarcodeScanner implements InputDevice, Runnable {
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		while(true) {
-			System.out.println("Wpisz kod kreskowy produktu:");
-			Scanner in = new Scanner(System.in);
-			Integer barcode = null;
-			if(in.hasNextInt())
+		while(true)
+		{
+			/*Scanner in = new Scanner(System.in);
+			if(in.hasNext("exit"))
 			{
-				barcode = in.nextInt();
-				Event event = new Event(barcode, EventType.ProductScannedEvent);
+				Event event = new Event("exit", EventType.ExitButtonClickedEvent);
 				sendEvent(event);
-			}
+			}*/
+			String inputValue = JOptionPane.showInputDialog("Please input a value");
+			Event event = new Event(inputValue, EventType.ExitButtonClickedEvent);
+			sendEvent(event);
 		}
 	}
+
 }

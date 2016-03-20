@@ -4,8 +4,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.SynchronousQueue;
 
 import controller.*;
-import inputDevices.BarcodeScanner;
-import inputDevices.Event;
+import inputDevices.*;
 import model.*;
 import view.*;
 
@@ -21,10 +20,13 @@ public class PointOfSaleStart {
 		LCDDisplay lcd = new LCDDisplay(model);
 		
 		BarcodeScanner barcodeScanner = new BarcodeScanner(queue);
+		ExitButton exitButton = new ExitButton(queue);
 		
 		Controller controller = new Controller(lcd, printer, model, queue);
 		
-		barcodeScanner.scanProduct();
+		exitButton.run();
+		barcodeScanner.run();
+		
 		
 		
 	}

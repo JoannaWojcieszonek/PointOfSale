@@ -34,6 +34,11 @@ public class Controller implements Runnable{
 			{
 				model.loadProductById((Integer)event.getValue());
 			}
+			else if(event.getType() == EventType.ExitButtonClickedEvent)
+			{
+				printer.printReceipt();
+				model.reset();
+			}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
