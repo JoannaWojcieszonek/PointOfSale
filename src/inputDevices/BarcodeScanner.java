@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
 
 
-public class BarcodeScanner implements InputDevice{
+public class BarcodeScanner implements InputDevice, Runnable {
 	
 	private BlockingQueue<Event> queue;
 
