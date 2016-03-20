@@ -48,3 +48,6 @@ Temporary Items
 
 bin/
 *.class
+*.classpath
+*.project
+.settings/
