@@ -14,12 +14,12 @@ public class ProductScannedStrategy implements EventStrategy {
 	}
 	
 	@Override
-	public void execute(Event event) throws ExecutionException {
-		if(event.getValue() == null) {
+	public void execute(Object value) throws ExecutionException {
+		if(value == null) {
 			throw new ExecutionException("Invalid bar-code", new NullPointerException());
 		}
 		try {
-		model.loadProductById((Integer)event.getValue());
+		model.loadProductById((Integer)value);
 		} catch (NoSuchElementException e) {
 			throw new ExecutionException(e.getMessage(), e);
 		}

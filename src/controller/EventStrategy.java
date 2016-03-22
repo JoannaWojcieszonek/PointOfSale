@@ -5,5 +5,5 @@ import java.util.concurrent.ExecutionException;
 import inputDevices.Event;
 
 public interface EventStrategy {
-	public void execute(Event event) throws ExecutionException;
+	public void execute(Object value) throws ExecutionException;
 }

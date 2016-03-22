@@ -11,7 +11,7 @@ public class ExitButtonClickedStrategy implements EventStrategy {
 	}
 	
 	@Override
-	public void execute(Event event) {
+	public void execute(Object value) {
 		model.reset();
 	}
 

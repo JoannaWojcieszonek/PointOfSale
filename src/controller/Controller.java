@@ -38,7 +38,7 @@ public class Controller implements Runnable{
 		try {
 			Event event = queue.take();
 
-			strategyMap.get(event.getType()).execute(event);
+			strategyMap.get(event.getType()).execute(event.getValue());
 		
 		} catch (InterruptedException e) {
 			e.printStackTrace();

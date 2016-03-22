@@ -17,29 +17,24 @@ public class ExitButton implements InputDevice, Runnable {
 	
 	@Override
 	public void sendEvent(Event event) {
-		// TODO Auto-generated method stub
 		try {
 			queue.put(event);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Sending event failed");
 		}
 	}
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		while(true)
 		{
-			/*Scanner in = new Scanner(System.in);
-			if(in.hasNext("exit"))
-			{
+			Object[] options = { "EXIT" };
+			Object option = JOptionPane.showOptionDialog(null, "Click exit to continue", "",
+			JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+			null, options, options[0]);
+			//String inputValue = JOptionPane.showInputDialog("Please input a value");
+			if(((Integer)option)==0) {
 				Event event = new Event("exit", EventType.ExitButtonClickedEvent);
-				sendEvent(event);
-			}*/
-			String inputValue = JOptionPane.showInputDialog("Please input a value");
-			if(inputValue.equals("exit")) {
-				Event event = new Event(inputValue, EventType.ExitButtonClickedEvent);
 				sendEvent(event);
 			}
 		}

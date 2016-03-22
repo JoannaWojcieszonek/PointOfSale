@@ -12,13 +12,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import view.LCDDisplay;
-import view.Printer;
 
-import java.util.concurrent.BlockingQueue;
-
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+@RunWith(MockitoJUnitRunner.class)
 public class ExitButtonClickedStrategyTest {
 
 	@Mock
@@ -36,8 +32,8 @@ public class ExitButtonClickedStrategyTest {
 
 	@Test
 	public void testExecute() {
-		fail("Not yet implemented");
-		exitButtonClickedStrategy.execute(new Event(1,EventType.ExitButtonClickedEvent));
+
+		exitButtonClickedStrategy.execute(1);
 		
 		verify(model,times(1)).reset();
 		

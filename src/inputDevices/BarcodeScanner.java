@@ -24,16 +24,14 @@ public class BarcodeScanner implements InputDevice, Runnable {
 		try {
 			queue.put(event);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Sending event failed");
 		}
 	}
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		while(true) {
-			System.out.println("Wpisz kod kreskowy produktu:");
+			System.out.println("Scan bar-code:");
 			Scanner in = new Scanner(System.in);
 			Integer barcode = null;
 			if(in.hasNextInt())

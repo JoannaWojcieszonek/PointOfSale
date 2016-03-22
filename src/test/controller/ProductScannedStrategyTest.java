@@ -40,7 +40,7 @@ public class ProductScannedStrategyTest {
 	public void executeTest() throws ExecutionException {
 		
 		doThrow(new NoSuchElementException()).when(model).loadProductById(1);
-		productScannedStrategy.execute(new Event(1,EventType.ProductScannedEvent));
+		productScannedStrategy.execute(1);
 		
 	}
 	@Test
@@ -50,7 +50,7 @@ public class ProductScannedStrategyTest {
 		
 		String message= null;
 		try {
-			productScannedStrategy.execute(event);
+			productScannedStrategy.execute(event.getValue());
 		} catch (ExecutionException e) {
 			message =e.getMessage();
 		}
