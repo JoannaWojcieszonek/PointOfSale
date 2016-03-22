@@ -23,12 +23,10 @@ public class PointOfSaleStart {
 		ExitButton exitButton = new ExitButton(queue);
 		
 		Controller controller = new Controller(lcd, printer, model, queue);
+		controller.start();
 		
 		exitButton.run();
 		barcodeScanner.run();
-		
-		
-		
 	}
 
 }

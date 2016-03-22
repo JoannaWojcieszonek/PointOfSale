@@ -12,7 +12,6 @@ public class ExitButtonClickedStrategy implements EventStrategy {
 	
 	@Override
 	public void execute(Event event) {
-		// TODO Auto-generated method stub
 		model.reset();
 	}
 

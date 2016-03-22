@@ -11,8 +11,7 @@ public class ReceiptTest {
 	private Receipt receipt;
 
 	@Before
-	public void testSetup()
-	{
+	public void testSetup() {
 		receipt = new Receipt();
 	}
 	

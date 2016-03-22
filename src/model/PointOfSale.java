@@ -10,7 +10,11 @@ public class PointOfSale extends Observable
     private ProductDataBase productDataBase = new ProductDataBase();
 
 
-    public void loadProductById(Integer id) throws NoSuchElementException
+	public void setProductDataBase(ProductDataBase productDataBase) {
+		this.productDataBase = productDataBase;
+	}
+
+	public void loadProductById(Integer id) throws NoSuchElementException
     {
         Product p = productDataBase.findByBarcode(id);
         receipt.addProduct(p);
