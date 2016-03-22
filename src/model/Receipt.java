@@ -24,10 +24,6 @@ public class Receipt {
 		this.sum = sum;
 	}
 	
-	public Product getProduct(int i) {
-		return productList.get(i);
-	}
-	
 	public void addProduct(Product product) {
 		productList.add(product);
 		sum += product.getPrice();
