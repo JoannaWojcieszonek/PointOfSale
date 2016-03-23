@@ -13,7 +13,7 @@ import view.Printer;
 
 /**
  * 
- * Controller class manages all the components of the program and handle events send by input devices.
+ * Controller class manages all the components of the program and handle events sent by input devices.
  *
  */
 public class Controller implements Runnable {

@@ -20,7 +20,6 @@ public class LCDDisplay implements Observer{
 			Receipt r = (Receipt) arg;
 			System.out.println("Total: " + r.getSum());
 		}
-			
 		System.out.println("#######################");
 	}
 }
