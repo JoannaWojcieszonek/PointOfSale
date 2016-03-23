@@ -11,17 +11,22 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
+/**
+ * 
+ * BarcodeScanner is a stub class which takes input barcode from the user.
+ *
+ */
 public class BarcodeScanner implements InputDevice {
 	
 	private BlockingQueue<Event> queue;
+	
 	private void createConsole()
 	{
 		JFrame frame = new JFrame("BarcodeScanner");
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
-		panel.add(new JLabel("Write the bar-code: "),BorderLayout.NORTH);
+		panel.add(new JLabel("Input the bar-code: (try 1, 2 and 3)"),BorderLayout.NORTH);
 		
 		JTextField text = new JTextField();
 		text.setPreferredSize(new Dimension(100,100));
@@ -69,16 +74,4 @@ public class BarcodeScanner implements InputDevice {
 			System.out.println("Sending event failed");
 		}
 	}
-	/*
-	@Override
-	public void run() {
-		
-				while(true) {
-					String input = JOptionPane.showInputDialog("Please input a value");
-					Integer barcode = Integer.parseInt(input);
-					Event event = new Event(barcode, EventType.ProductScannedEvent);
-					sendEvent(event);
-					}
-		
-	}*/
 }

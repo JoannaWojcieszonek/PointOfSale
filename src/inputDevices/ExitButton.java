@@ -11,7 +11,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
+/**
+ * 
+ * ExitButton stub class. It creates a small window and allows users to input 'exit' phrase,
+ * when they want to finalize their transaction and print the receipt.
+ *
+ */
 public class ExitButton implements InputDevice {
 
 	private BlockingQueue<Event> queue;

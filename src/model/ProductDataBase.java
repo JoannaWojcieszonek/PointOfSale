@@ -4,6 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+/**
+ * 
+ * ProductDataBase is an example database which contains 3 products (1,2,3 bar-code)
+ * and provides one method - finding products by bar-code.
+ *
+ */
 public class ProductDataBase {
 
 	private static Map<Integer, Product> productList;

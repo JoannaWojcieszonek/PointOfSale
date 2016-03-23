@@ -11,7 +11,12 @@ import model.*;
 import view.LCDDisplay;
 import view.Printer;
 
-public class Controller implements Runnable{
+/**
+ * 
+ * Controller class manages all the components of the program and handle events send by input devices.
+ *
+ */
+public class Controller implements Runnable {
 	LCDDisplay lcd;
 	Printer printer;
 	PointOfSale model;
