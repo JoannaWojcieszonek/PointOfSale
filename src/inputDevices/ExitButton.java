@@ -1,18 +1,24 @@
 package inputDevices;
 
-import java.util.Scanner;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.concurrent.BlockingQueue;
 
-import javax.swing.JOptionPane;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-public class ExitButton implements InputDevice, Runnable {
+
+public class ExitButton implements InputDevice {
 
 	private BlockingQueue<Event> queue;
 	
 	public ExitButton(BlockingQueue<Event> queue) {
 		this.queue = queue;
-		Thread thread = new Thread(this);
-		thread.start();
+		createConsole();
 	}
 	
 	@Override
@@ -23,21 +29,34 @@ public class ExitButton implements InputDevice, Runnable {
 			System.out.println("Sending event failed");
 		}
 	}
+	private void createConsole()
+	{
+		JFrame frame = new JFrame("Exit scanner ");
+		frame.setSize(300, 300); 
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(new BorderLayout());
+		panel.add(new JLabel("Write an exit phrase: "),BorderLayout.NORTH);
+		
+		JTextField text = new JTextField();
+		text.setPreferredSize(new Dimension(100,100));
+		text.setEditable(true);
+		text.addKeyListener(new KeyAdapter() {
 
-	@Override
-	public void run() {
-		while(true)
-		{
-			Object[] options = { "EXIT" };
-			Object option = JOptionPane.showOptionDialog(null, "Click exit to continue", "",
-			JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
-			null, options, options[0]);
-			//String inputValue = JOptionPane.showInputDialog("Please input a value");
-			if(((Integer)option)==0) {
-				Event event = new Event("exit", EventType.ExitButtonClickedEvent);
-				sendEvent(event);
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				if(arg0.getKeyCode() == KeyEvent.VK_ENTER)
+				{
+					if(text.getText().compareTo("exit")==0)
+						sendEvent(new Event(text.getText(),EventType.ExitButtonClickedEvent));
+					text.setText("");
+				}
 			}
-		}
+		});
+		
+		panel.add(text,BorderLayout.CENTER);
+		frame.add(panel);
+		frame.setVisible(true);
 	}
 
 }

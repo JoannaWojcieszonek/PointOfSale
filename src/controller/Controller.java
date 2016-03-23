@@ -1,9 +1,7 @@
 package controller;
 
-
 import java.util.EnumMap;
 import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutionException;
 
@@ -37,9 +35,7 @@ public class Controller implements Runnable{
 	public void handleEvent() {
 		try {
 			Event event = queue.take();
-
 			strategyMap.get(event.getType()).execute(event.getValue());
-		
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (ExecutionException e) {

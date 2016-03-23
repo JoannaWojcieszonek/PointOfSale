@@ -7,7 +7,6 @@ import java.util.NoSuchElementException;
 import java.util.concurrent.ExecutionException;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -15,7 +14,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import controller.ProductScannedStrategy;
 import inputDevices.Event;
-import inputDevices.EventType;
 import model.PointOfSale;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -27,33 +25,29 @@ public class ProductScannedStrategyTest {
 	
 	ProductScannedStrategy productScannedStrategy;
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
 	@Before
 	public void setUp() throws Exception {
 		 productScannedStrategy = new ProductScannedStrategy(model);
 	}
 
 	@Test(expected = ExecutionException.class)
-	public void executeTest() throws ExecutionException {
-		
+	public void throwingExecutionExceptionTest() throws ExecutionException {
 		doThrow(new NoSuchElementException()).when(model).loadProductById(1);
 		productScannedStrategy.execute(1);
-		
 	}
+	
 	@Test
-	public void executeTest2()
+	public void InvalidBarCodeMessageTest()
 	{
 		when(event.getValue()).thenReturn(null);
 		
-		String message= null;
+		String message = null;
 		try {
 			productScannedStrategy.execute(event.getValue());
 		} catch (ExecutionException e) {
-			message =e.getMessage();
+			message = e.getMessage();
 		}
+		
 		assertEquals(message,"Invalid bar-code");
 	}
 	

@@ -1,8 +1,6 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
@@ -12,9 +10,9 @@ public class ProductDataBase {
 	
 	static {
 		productList = new HashMap<Integer, Product>();
-		productList.put(1, new Product("Chleb", 2.99));
-		productList.put(2, new Product("Bu³ka", 0.30));
-		productList.put(3, new Product("Mas³o", 3.89));
+		productList.put(1, new Product("Bread", 2.99));
+		productList.put(2, new Product("Milk", 1.30));
+		productList.put(3, new Product("Butter", 3.89));
 	}
 	
 	public Product findByBarcode(Integer barcode) throws NoSuchElementException {

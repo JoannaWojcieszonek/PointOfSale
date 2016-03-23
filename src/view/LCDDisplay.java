@@ -10,8 +10,7 @@ public class LCDDisplay implements Observer{
 		System.out.println(msg);
 	}
 
-	public void update(Observable o, Object arg)
-	{
+	public void update(Observable o, Object arg) {
 		System.out.println("##### LCD DISPLAY #####");
 		if( arg instanceof Product) {
 			Product p  = (Product) arg;

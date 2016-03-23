@@ -5,8 +5,6 @@ import controller.Controller;
 import inputDevices.Event;
 import inputDevices.EventType;
 import model.PointOfSale;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -31,17 +29,6 @@ public class ControllerTest {
 	Printer printer;
 	@Mock
 	PointOfSale pointOfSale;
-
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-
-	}
-
-	@Before
-	public void setUp() throws Exception
-	{
-
-	}
 
 	@Test
 	public void constructorTest()

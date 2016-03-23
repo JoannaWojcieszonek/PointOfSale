@@ -3,7 +3,6 @@ package controller;
 import java.util.NoSuchElementException;
 import java.util.concurrent.ExecutionException;
 
-import inputDevices.Event;
 import model.PointOfSale;
 
 public class ProductScannedStrategy implements EventStrategy {

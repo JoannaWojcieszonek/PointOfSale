@@ -1,6 +1,5 @@
 package controller;
 
-import inputDevices.Event;
 import model.PointOfSale;
 
 public class ExitButtonClickedStrategy implements EventStrategy {

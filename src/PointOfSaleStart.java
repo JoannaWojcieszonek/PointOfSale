@@ -25,8 +25,6 @@ public class PointOfSaleStart {
 		Controller controller = new Controller(lcd, printer, model, queue);
 		controller.start();
 		
-		exitButton.run();
-		barcodeScanner.run();
 	}
 
 }
